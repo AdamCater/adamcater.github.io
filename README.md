@@ -1,3 +1,6 @@
+# Adam Cater
+Junior Games Programmer | University Student
+
 ## Projects
 ### Project 1
 - Description
