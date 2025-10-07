@@ -1,8 +1,10 @@
 <br />
 ---
+<hr\>
 # Adam Cater
-- Junior Games Programmer | University Student
+Junior Games Programmer | University Student
 ---
+<hr\>
 
 ## Recent Projects
 
