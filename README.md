@@ -1,10 +1,10 @@
 <br />
 ---
-<hr\>
+<hr/>
 # Adam Cater
 Junior Games Programmer | University Student
 ---
-<hr\>
+<hr/>
 
 ## Recent Projects
 
