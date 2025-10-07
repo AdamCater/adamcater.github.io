@@ -1,1 +1,5 @@
+@import "{{ hacker.theme }}";
 
+header {
+  display: none;
+}
