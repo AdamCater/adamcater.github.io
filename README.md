@@ -1,22 +1,22 @@
-#
+
 # Adam Cater
 Junior Games Programmer | University Student
 
-##
+
 ## Recent Projects
-=-=-=-=-=-=-=-=-=-=
+
 
 ### Project 1
 - Description
 - Links
-=-=-=-=-=-=-=-=-=-=
+
 
 ### Project 2
 - Description
 - Links
 
-# Education
+## Education
 - Staffordshire University
 
-# Work Experience
+## Work Experience
 - Primrose Hill Nursing Home
