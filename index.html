@@ -3,61 +3,82 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adam Cater's Portfolio</title>
+    <title>Adam Cater - Portfolio</title>
+
+    <!-- Pixel Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: #eee;
+            background: #000;
+            color: #39ff14; /* neon green */
+            font-family: "Press Start 2P", monospace;
+            line-height: 1.5;
+            overflow-x: hidden;
+
+            /* CRT Scanline Effect */
+            background-image:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 0.03) 0px,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px,
+                    transparent 3px
+                );
+        }
+
+        /* Neon Glow Animation */
+        .glow {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #0f0; }
+            100% { text-shadow: 0 0 18px #33ff33; }
         }
 
         header {
-            background: #1c1c1c;
             padding: 60px 20px;
             text-align: center;
+            background: radial-gradient(circle, #111 0%, #000 80%);
+            border-bottom: 4px solid #39ff14;
         }
 
         h1 {
             margin: 0;
-            font-size: 46px;
+            font-size: 32px;
         }
 
         h2 {
             margin-top: 40px;
-            border-bottom: 2px solid #444;
+            font-size: 22px;
+            border-bottom: 3px dashed #39ff14;
             padding-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .tagline {
-            color: #bbb;
-            font-size: 18px;
-            margin-top: 10px;
         }
 
         .section {
-            max-width: 900px;
+            max-width: 950px;
             margin: auto;
             padding: 30px 20px;
         }
 
         .project {
-            background: #1b1b1b;
+            border: 2px solid #39ff14;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .project img {
-            width: 160px;
-            height: 100px;
+            width: 180px;
+            height: 120px;
             object-fit: cover;
-            border-radius: 8px;
-            background: #333;
+            background: #111;
+            border: 2px solid #39ff14;
         }
 
         .project-info {
@@ -66,23 +87,26 @@
 
         .project-info h3 {
             margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #ff0099; /* neon pink */
         }
 
         a {
-            color: #66b0ff;
+            color: #00eaff; /* neon cyan */
             text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline;
+            text-shadow: 0 0 8px #00eaff;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: #1b1b1b;
-            margin-top: 40px;
-            color: #777;
+            border-top: 3px dashed #39ff14;
+            color: #39ff14;
+            background: #000;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -91,36 +115,33 @@
 
     <!-- HEADER -->
     <header>
-        <h1>Adam Cater</h1>
-        <p class="tagline">Games Programmer • Game Designer</p>
+        <h1 class="glow">YOUR NAME</h1>
+        <p>Retro Arcade Game Developer</p>
     </header>
 
     <!-- ABOUT -->
     <div class="section">
-        <h2>About Me</h2>
+        <h2>ABOUT ME</h2>
         <p>
             Hi, I'm a Games Developer passionate to transform concept ideas into interactive game experiences.
-            I strive to create gameplay systems and prototype new mechanics.
-            I have worked in Unity/Unreal. 
+            I strive to create gameplay systems and prototype new mechanics. 
         </p>
     </div>
 
     <!-- PROJECTS -->
     <div class="section">
-        <h2>Projects</h2>
+        <h2>PROJECTS</h2>
 
         <!-- PROJECT 1 -->
         <div class="project">
             <img src="images/project1.png" alt="Project Thumbnail">
             <div class="project-info">
-                <h3>Game Title #1</h3>
+                <h3>Project Title #1</h3>
                 <p>
-                    Short description of the game. What engine you used, what you built, or what makes it cool.
-                    Example: A physics-based puzzle platformer created in Unity.
+                    A fast-paced neon shooter with retro arcade visuals and CRT effects.
                 </p>
                 <p>
-                    <a href="#">Play / Download →</a> |
-                    <a href="#">GitHub Repo →</a>
+                    <a href="#">Play Game →</a>
                 </p>
             </div>
         </div>
@@ -129,13 +150,11 @@
         <div class="project">
             <img src="images/project2.png" alt="Project Thumbnail">
             <div class="project-info">
-                <h3>Game Title #2</h3>
+                <h3>Project Title #2</h3>
                 <p>
-                    A multiplayer arena game built in Unreal Engine 5 featuring custom movement mechanics 
-                    and fast-paced combat.
+                    A pixel-art platformer with chiptune audio and retro mechanics.
                 </p>
                 <p>
-                    <a href="#">Gameplay Video →</a> |
                     <a href="#">GitHub Repo →</a>
                 </p>
             </div>
@@ -145,10 +164,9 @@
         <div class="project">
             <img src="images/project3.png" alt="Project Thumbnail">
             <div class="project-info">
-                <h3>Game Title #3</h3>
+                <h3>Game Jam Entry</h3>
                 <p>
-                    A game jam project created in 48 hours. I designed the mechanics, implemented the AI, 
-                    and created the UI system.
+                    Built in 48 hours — includes custom sprites and arcade-style FX.
                 </p>
                 <p>
                     <a href="#">Play on Itch.io →</a>
@@ -159,19 +177,17 @@
 
     <!-- CONTACT -->
     <div class="section">
-        <h2>Contact</h2>
+        <h2>CONTACT ME</h2>
         <p>
-            📧 Email: <a href="mailto:your@email.com">adamcater99@outlook.com</a><br>
-            🔗 LinkedIn: <a href="#">Your LinkedIn</a><br>
-            🕹️ Itch.io: <a href="#">Your Itch.io</a><br>
-            💻 GitHub: <a href="#">Your GitHub</a>
+            Email: <a href="mailto:adamcater99@outlook.com">adamcater99@outlook.com</a><br>
+            Itch.io: <a href="#">Your Itch</a><br>
+            GitHub: <a href="#">Your GitHub</a><br>
         </p>
     </div>
 
     <footer>
-        © 2025 AdamCater—Games Programmer
+        © 2025 Adam Cater — Games Programmer
     </footer>
 
 </body>
 </html>
-
