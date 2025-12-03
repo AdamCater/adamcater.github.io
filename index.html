@@ -9,25 +9,110 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 
     <style>
+        /* -------------------------
+           GLOBAL STYLES
+        ------------------------- */
         body {
             margin: 0;
             background: #000;
-            color: #39ff14; /* neon green */
+            color: #39ff14;
             font-family: "Press Start 2P", monospace;
             line-height: 1.5;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-            /* CRT scanlines */
+        /* -------------------------
+           PIXEL GRID BACKGROUND
+        ------------------------- */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
             background-image:
+                linear-gradient(#0a0a0a 1px, transparent 1px),
+                linear-gradient(90deg, #0a0a0a 1px, transparent 1px);
+            background-size: 32px 32px; /* Pixel grid size */
+            opacity: 0.35;
+        }
+
+        /* -------------------------
+           SCANLINE + FLICKER LAYER
+        ------------------------- */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+
+            background-image: 
                 repeating-linear-gradient(
                     to bottom,
-                    rgba(255, 255, 255, 0.025) 0px,
-                    rgba(255, 255, 255, 0.025) 2px,
+                    rgba(255,255,255,0.03) 0px,
+                    rgba(255,255,255,0.03) 2px,
                     transparent 2px,
                     transparent 6px
                 );
+
+            animation: flicker 0.25s infinite; /* CRT Flicker effect */
         }
 
-        /* GLOW animation */
+        @keyframes flicker {
+            0%   { opacity: 0.18; }
+            50%  { opacity: 0.25; }
+            100% { opacity: 0.18; }
+        }
+
+        /* -------------------------
+           NAVBAR
+        ------------------------- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #000;
+            border-bottom: 3px solid #39ff14;
+            padding: 12px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #00eaff;
+            text-decoration: none;
+            margin: 0 25px;
+            font-size: 12px;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 8px #00eaff;
+            color: #39ff14;
+        }
+
+        /* -------------------------
+           HEADER + ANIMATED SPRITES
+        ------------------------- */
+
+        header {
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Typing + glow for name */
+        #typewriter {
+            width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #39ff14;
+            animation: typing 3s steps(30), blink .8s step-end infinite;
+        }
+
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
+
         .glow {
             animation: glowPulse 1.6s infinite alternate;
         }
@@ -37,34 +122,50 @@
             100% { text-shadow: 0 0 18px #33ff33; }
         }
 
-        /* Typewriter Effect */
-        #typewriter {
-            width: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid #39ff14;
-            animation: typing 3s steps(30), blink .7s step-end infinite;
+        /* 8-bit sprite style */
+        .sprite {
+            position: absolute;
+            width: 64px;
+            image-rendering: pixelated;
         }
 
-        @keyframes typing {
-            from { width: 0; }
-            to   { width: 100%; }
+        /* Left sprite animation */
+        .sprite-left {
+            left: 10%;
+            top: 40%;
+            animation: floatA 3s ease-in-out infinite;
         }
 
-        @keyframes blink {
-            50% { border-color: transparent; }
+        /* Right sprite animation */
+        .sprite-right {
+            right: 10%;
+            top: 35%;
+            animation: floatB 4s ease-in-out infinite;
         }
 
-        header {
-            padding: 60px 20px;
-            text-align: center;
-            background: radial-gradient(circle, #111 0%, #000 85%);
+        @keyframes floatA {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
         }
 
-        h1 {
-            margin: 0;
-            font-size: 32px;
+        @keyframes floatB {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(0); }
         }
+
+        /* Default placeholder sprites (8-bit stars) */
+        .sprite-left {
+            content: url('https://i.imgur.com/8qjQfe3.png');
+        }
+        .sprite-right {
+            content: url('https://i.imgur.com/T5C8oyB.png');
+        }
+
+        /* -------------------------
+           CONTENT SECTIONS
+        ------------------------- */
 
         h2 {
             margin-top: 40px;
@@ -79,6 +180,7 @@
             padding: 30px 20px;
         }
 
+        /* PROJECTS */
         .project {
             border: 2px solid #39ff14;
             border-radius: 10px;
@@ -86,7 +188,7 @@
             margin-bottom: 35px;
             display: flex;
             gap: 25px;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .project img {
@@ -98,12 +200,12 @@
         }
 
         .project-title {
-            color: #ff0099; /* neon pink */
+            color: #ff0099;
             font-size: 16px;
         }
 
         a {
-            color: #00eaff; /* neon blue */
+            color: #00eaff;
             text-decoration: none;
         }
 
@@ -119,33 +221,52 @@
             background: #000;
             font-size: 12px;
         }
+
+        /* MOBILE FIXES */
+        @media (max-width: 650px) {
+            .project { flex-direction: column; text-align: center; }
+            .project img { margin: 0 auto; }
+            nav a { margin: 0 10px; font-size: 9px; }
+            .sprite { display: none; } /* Hide sprites on small screens */
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#about">ABOUT</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#contact">CONTACT</a>
+    </nav>
+
     <!-- HEADER -->
     <header>
+        <!-- 8-bit floating sprites -->
+        <img class="sprite sprite-left" alt="">
+        <img class="sprite sprite-right" alt="">
+
         <h1 class="glow"><span id="typewriter">ADAM CATER</span></h1>
-        <p>Games Programmer • Unity • Unreal Engine • Systems Programmer</p>
+        <p>Game Developer • Unity • Unreal Engine • Systems Programmer</p>
     </header>
 
     <!-- ABOUT -->
-    <div class="section">
+    <div id="about" class="section">
         <h2>ABOUT ME</h2>
         <p>
-            Hi, I'm a Games Developer passionate to transform concept ideas into interactive game experiences.
-            I strive to create gameplay systems and prototype new mechanics. 
-            I have worked within <span style="color:#ff0099">Unity</span>,
+            Hi! I’m Adam Cater, a game developer who loves 8-bit arcade aesthetics,
+            puzzle design, worldbuilding, and experimental mechanics.
+            I use <span style="color:#ff0099">Unity</span>,
             <span style="color:#ff0099">Unreal Engine</span>,
-            and low-level programming in
-            <span style="color:#00eaff">Visual Studio using Graphics Libraries</span>
-            to create both games and game systems.
+            and low-level programming with
+            <span style="color:#00eaff">Visual Studio & graphics libraries</span>
+            to create both games and custom engines/systems.
         </p>
     </div>
 
     <!-- PROJECTS -->
-    <div class="section">
+    <div id="projects" class="section">
         <h2>GAMES & PROJECTS</h2>
 
         <!-- Soulbound -->
@@ -155,8 +276,7 @@
                 <p class="project-title">SOULBOUND</p>
                 <p>
                     A top-down puzzle game where you guide the soul of a recently
-                    murdered woman through mysterious levels to reunite with her spirit.
-                    Features atmospheric level design, puzzle mechanics, and story-driven gameplay.
+                    murdered woman through mysterious levels to reunite with her essence.
                 </p>
                 <a href="#">View Project →</a>
             </div>
@@ -168,9 +288,8 @@
             <div>
                 <p class="project-title">CATSTRONAUT</p>
                 <p>
-                    A third-person creature-capture adventure where you play as
-                    an astronaut cat exploring an alien world. Your mission:
-                    track, study, and capture endangered creatures while surviving the planet’s hazards.
+                    A third-person creature-capture adventure where you play as a cat astronaut
+                    exploring an alien world full of endangered wildlife.
                 </p>
                 <a href="#">View Project →</a>
             </div>
@@ -178,17 +297,17 @@
     </div>
 
     <!-- CONTACT -->
-    <div class="section">
+    <div id="contact" class="section">
         <h2>CONTACT</h2>
         <p>
-            Email: <a href="mailto:adamcater99@outlook.com">adamcater99@outlook.com</a><br>
+            Email: <a href="mailto:adamcaterdev@gmail.com">adamcaterdev@gmail.com</a><br>
             GitHub: <a href="#">Your GitHub</a><br>
             Itch.io: <a href="#">Your Itch.io</a><br>
         </p>
     </div>
 
     <footer>
-        © 2025 Adam Cater —Games Programmer
+        © 2025 Adam Cater — 8-Bit Arcade Game Developer
     </footer>
 
 </body>
