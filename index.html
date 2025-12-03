@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adam Cater - Portfolio</title>
+    <title>Adam Cater — Arcade Portfolio</title>
 
     <!-- Pixel Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
@@ -15,34 +15,50 @@
             color: #39ff14; /* neon green */
             font-family: "Press Start 2P", monospace;
             line-height: 1.5;
-            overflow-x: hidden;
 
-            /* CRT Scanline Effect */
+            /* CRT scanlines */
             background-image:
                 repeating-linear-gradient(
                     to bottom,
-                    rgba(255, 255, 255, 0.03) 0px,
-                    rgba(255, 255, 255, 0.03) 1px,
-                    transparent 1px,
-                    transparent 3px
+                    rgba(255, 255, 255, 0.025) 0px,
+                    rgba(255, 255, 255, 0.025) 2px,
+                    transparent 2px,
+                    transparent 6px
                 );
         }
 
-        /* Neon Glow Animation */
+        /* GLOW animation */
         .glow {
-            animation: glow 1.5s infinite alternate;
+            animation: glowPulse 1.6s infinite alternate;
         }
 
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #0f0; }
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 4px #0f0; }
             100% { text-shadow: 0 0 18px #33ff33; }
+        }
+
+        /* Typewriter Effect */
+        #typewriter {
+            width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #39ff14;
+            animation: typing 3s steps(30), blink .7s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to   { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
 
         header {
             padding: 60px 20px;
             text-align: center;
-            background: radial-gradient(circle, #111 0%, #000 80%);
-            border-bottom: 4px solid #39ff14;
+            background: radial-gradient(circle, #111 0%, #000 85%);
         }
 
         h1 {
@@ -52,9 +68,9 @@
 
         h2 {
             margin-top: 40px;
-            font-size: 22px;
+            font-size: 20px;
+            padding-bottom: 12px;
             border-bottom: 3px dashed #39ff14;
-            padding-bottom: 10px;
         }
 
         .section {
@@ -65,34 +81,29 @@
 
         .project {
             border: 2px solid #39ff14;
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
             padding: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             display: flex;
             gap: 25px;
+            background: rgba(0, 0, 0, 0.75);
         }
 
         .project img {
             width: 180px;
             height: 120px;
             object-fit: cover;
-            background: #111;
             border: 2px solid #39ff14;
+            background: #111;
         }
 
-        .project-info {
-            flex: 1;
-        }
-
-        .project-info h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
+        .project-title {
             color: #ff0099; /* neon pink */
+            font-size: 16px;
         }
 
         a {
-            color: #00eaff; /* neon cyan */
+            color: #00eaff; /* neon blue */
             text-decoration: none;
         }
 
@@ -115,8 +126,8 @@
 
     <!-- HEADER -->
     <header>
-        <h1 class="glow">Adam Cater</h1>
-        <p>Games Programmer</p>
+        <h1 class="glow"><span id="typewriter">ADAM CATER</span></h1>
+        <p>Games Programmer • Unity • Unreal Engine • Systems Programmer</p>
     </header>
 
     <!-- ABOUT -->
@@ -125,68 +136,59 @@
         <p>
             Hi, I'm a Games Developer passionate to transform concept ideas into interactive game experiences.
             I strive to create gameplay systems and prototype new mechanics. 
+            I have worked within <span style="color:#ff0099">Unity</span>,
+            <span style="color:#ff0099">Unreal Engine</span>,
+            and low-level programming in
+            <span style="color:#00eaff">Visual Studio using Graphics Libraries</span>
+            to create both games and game systems.
         </p>
     </div>
 
     <!-- PROJECTS -->
     <div class="section">
-        <h2>PROJECTS</h2>
+        <h2>GAMES & PROJECTS</h2>
 
-        <!-- PROJECT 1 -->
+        <!-- Soulbound -->
         <div class="project">
-            <img src="images/project1.png" alt="Project Thumbnail">
-            <div class="project-info">
-                <h3>Project Title #1</h3>
+            <img src="images/soulbound.png" alt="Soulbound Thumbnail">
+            <div>
+                <p class="project-title">SOULBOUND</p>
                 <p>
-                    A fast-paced neon shooter with retro arcade visuals and CRT effects.
+                    A top-down puzzle game where you guide the soul of a recently
+                    murdered woman through mysterious levels to reunite with her spirit.
+                    Features atmospheric level design, puzzle mechanics, and story-driven gameplay.
                 </p>
-                <p>
-                    <a href="#">Play Game →</a>
-                </p>
+                <a href="#">View Project →</a>
             </div>
         </div>
 
-        <!-- PROJECT 2 -->
+        <!-- Catstronaut -->
         <div class="project">
-            <img src="images/project2.png" alt="Project Thumbnail">
-            <div class="project-info">
-                <h3>Project Title #2</h3>
+            <img src="images/catstronaut.png" alt="Catstronaut Thumbnail">
+            <div>
+                <p class="project-title">CATSTRONAUT</p>
                 <p>
-                    A pixel-art platformer with chiptune audio and retro mechanics.
+                    A third-person creature-capture adventure where you play as
+                    an astronaut cat exploring an alien world. Your mission:
+                    track, study, and capture endangered creatures while surviving the planet’s hazards.
                 </p>
-                <p>
-                    <a href="#">GitHub Repo →</a>
-                </p>
-            </div>
-        </div>
-
-        <!-- PROJECT 3 -->
-        <div class="project">
-            <img src="images/project3.png" alt="Project Thumbnail">
-            <div class="project-info">
-                <h3>Game Jam Entry</h3>
-                <p>
-                    Built in 48 hours — includes custom sprites and arcade-style FX.
-                </p>
-                <p>
-                    <a href="#">Play on Itch.io →</a>
-                </p>
+                <a href="#">View Project →</a>
             </div>
         </div>
     </div>
 
     <!-- CONTACT -->
     <div class="section">
-        <h2>CONTACT ME</h2>
+        <h2>CONTACT</h2>
         <p>
             Email: <a href="mailto:adamcater99@outlook.com">adamcater99@outlook.com</a><br>
-            Itch.io: <a href="#">Your Itch</a><br>
             GitHub: <a href="#">Your GitHub</a><br>
+            Itch.io: <a href="#">Your Itch.io</a><br>
         </p>
     </div>
 
     <footer>
-        © 2025 Adam Cater — Games Programmer
+        © 2025 Adam Cater —Games Programmer
     </footer>
 
 </body>
