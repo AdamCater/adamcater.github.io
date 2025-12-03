@@ -24,19 +24,6 @@
         }
 
         /* -------------------------
-          8 BIT PIXEL SPARKS
-        ------------------------- */
-        .pixel-spark {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: #ffdd00; /* arcade yellow spark */
-            image-rendering: pixelated;
-            pointer-events: none;
-            z-index: 999;
-        }
-
-        /* -------------------------
            PIXEL GRID BACKGROUND
         ------------------------- */
         body::before {
@@ -103,6 +90,24 @@
             text-shadow: 0 0 8px #00eaff;
             color: #39ff14;
         }
+
+       /* -------------------------
+          SCREEN SHAKE
+        ------------------------- */
+        @keyframes screenShake {
+            0%   { transform: translate(0px, 0px); }
+            20%  { transform: translate(4px, -4px); }
+            40%  { transform: translate(-4px, 4px); }
+            60%  { transform: translate(4px, 4px); }
+            80%  { transform: translate(-4px, -4px); }
+            100% { transform: translate(0px, 0px); }
+        }
+        
+        /* Applied to the whole site container */
+        .shake {
+            animation: screenShake 0.2s steps(4) both;
+        }
+
 
         /* -------------------------
            HEADER + ANIMATED SPRITES
@@ -284,19 +289,24 @@ function spawnPixelSparks(x, y) {
     }
 }
 
-/* Attach sparks to ALL links, navbar items, and project cards */
+    <script>
+function screenShake() {
+    document.body.classList.add("shake");
+
+    setTimeout(() => {
+        document.body.classList.remove("shake");
+    }, 200); // match animation duration
+}
+
+/* Trigger screen shake on click of important elements */
 document.addEventListener("DOMContentLoaded", () => {
-    const sparkTargets = document.querySelectorAll(
-        "a, nav a, .project"
+    const shakeTargets = document.querySelectorAll(
+        ".project, nav a, a"
     );
 
-    sparkTargets.forEach(el => {
-        el.addEventListener("mouseenter", (e) => {
-            const rect = el.getBoundingClientRect();
-            spawnPixelSparks(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2
-            );
+    shakeTargets.forEach(el => {
+        el.addEventListener("click", () => {
+            screenShake();
         });
     });
 });
