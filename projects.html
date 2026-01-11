@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Adam Cater — Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adam Cater — Games Programming Projects</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 
@@ -50,12 +50,6 @@ body::after {
     animation: flicker 0.25s infinite;
 }
 
-@keyframes flicker {
-    0% { opacity: 0.28; }
-    50% { opacity: 0.35; }
-    100% { opacity: 0.28; }
-}
-
 /* NAV */
 nav {
     position: sticky;
@@ -74,11 +68,6 @@ nav a {
     font-size: 11px;
 }
 
-nav a:hover {
-    color: #39ff14;
-    text-shadow: 0 0 8px #00eaff;
-}
-
 /* HEADER */
 header {
     text-align: center;
@@ -94,66 +83,65 @@ header {
     to { text-shadow: 0 0 18px #33ff33; }
 }
 
-/* SECTIONS */
+/* =====================
+   SECTIONS
+===================== */
 .section {
     max-width: 1100px;
     margin: auto;
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 
-h2 {
-    font-size: 20px;
-    border-bottom: 3px dashed #39ff14;
-    padding-bottom: 12px;
-    margin-bottom: 30px;
-}
-
-/* PROJECT CARDS */
 .project {
-    display: flex;
-    gap: 25px;
     border: 2px solid #39ff14;
     border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 35px;
+    padding: 30px;
+    margin-bottom: 60px;
     background: rgba(0,0,0,0.85);
 }
 
-.project img {
-    width: 200px;
-    height: 130px;
-    object-fit: cover;
-    border: 2px solid #39ff14;
-}
-
+/* TITLES */
 .project-title {
-    font-size: 16px;
+    font-size: 18px;
     color: #ff0099;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
+/* TAGS */
 .tags {
-    margin: 10px 0;
+    margin: 15px 0 25px;
 }
 
 .tag {
     display: inline-block;
     border: 1px solid #00eaff;
     color: #00eaff;
-    padding: 4px 6px;
+    padding: 5px 7px;
     font-size: 8px;
     margin-right: 6px;
     margin-bottom: 6px;
 }
 
-/* LINKS */
-a {
-    color: #00eaff;
-    text-decoration: none;
+/* SCREENSHOTS */
+.screenshots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
 }
 
-a:hover {
-    text-shadow: 0 0 8px #00eaff;
+.screenshots img {
+    width: 100%;
+    border: 2px solid #39ff14;
+    background: #111;
+    image-rendering: pixelated;
+}
+
+/* SUBHEADINGS */
+.subheading {
+    color: #00eaff;
+    font-size: 12px;
+    margin: 30px 0 10px;
 }
 
 /* FOOTER */
@@ -167,11 +155,7 @@ footer {
 /* MOBILE */
 @media (max-width: 700px) {
     .project {
-        flex-direction: column;
-        text-align: center;
-    }
-    .project img {
-        margin: 0 auto;
+        padding: 20px;
     }
 }
 </style>
@@ -182,75 +166,38 @@ footer {
 <nav>
     <a href="index.html">HOME</a>
     <a href="#">PROJECTS</a>
-    <a href="#contact">CONTACT</a>
 </nav>
 
 <header>
     <h1 class="glow">GAMES PROGRAMMING PROJECTS</h1>
-    <p>Unity • Unreal Engine • Gameplay Systems</p>
+    <p>Case Studies • Gameplay Systems • Technical Focus</p>
 </header>
 
 <div class="section">
-    <h2>FEATURED PROJECTS</h2>
 
-    <!-- PROJECT -->
+    <!-- ================= PROJECT ================= -->
     <div class="project">
-        <img src="images/soulbound.png" alt="Soulbound">
-        <div>
-            <div class="project-title">SOULBOUND</div>
-            <p>
-                A top-down puzzle adventure focused on environmental storytelling
-                and player-driven exploration mechanics.
-            </p>
+        <div class="project-title">SOULBOUND</div>
 
-            <div class="tags">
-                <span class="tag">Unity</span>
-                <span class="tag">C#</span>
-                <span class="tag">Gameplay Programming</span>
-                <span class="tag">AI</span>
-            </div>
+        <p>
+            Soulbound is a top-down puzzle adventure focused on environmental storytelling
+            and player-driven exploration. The player guides a lost soul through abstract
+            spaces while uncovering narrative elements through gameplay.
+        </p>
 
-            <a href="#">→ View Project</a><br>
-            <a href="#">→ Source / Breakdown</a>
+        <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">Gameplay Programming</span>
+            <span class="tag">AI</span>
+            <span class="tag">Systems Design</span>
         </div>
-    </div>
 
-    <!-- PROJECT -->
-    <div class="project">
-        <img src="images/catstronaut.png" alt="Catstronaut">
-        <div>
-            <div class="project-title">CATSTRONAUT</div>
-            <p>
-                A third-person creature-capture game featuring AI-driven wildlife,
-                traversal systems, and player abilities.
-            </p>
-
-            <div class="tags">
-                <span class="tag">Unreal Engine</span>
-                <span class="tag">C++</span>
-                <span class="tag">Blueprints</span>
-                <span class="tag">Systems Design</span>
-            </div>
-
-            <a href="#">→ View Project</a><br>
-            <a href="#">→ Technical Details</a>
+        <!-- SCREENSHOTS -->
+        <div class="screenshots">
+            <img src="images/soulbound_1.png" alt="Soulbound screenshot 1">
+            <img src="images/soulbound_2.png" alt="Soulbound screenshot 2">
+            <img src="images/soulbound_3.png" alt="Soulbound screenshot 3">
         </div>
-    </div>
 
-</div>
-
-<div id="contact" class="section">
-    <h2>CONTACT</h2>
-    <p>
-        Email: <a href="mailto:adamcater99@outlook.com">adamcater99@outlook.com</a><br>
-        GitHub: <a href="#">GitHub</a><br>
-        Itch.io: <a href="#">Itch.io</a>
-    </p>
-</div>
-
-<footer>
-    © 2025 Adam Cater — Games Programmer
-</footer>
-
-</body>
-</html>
+        <div class="su
